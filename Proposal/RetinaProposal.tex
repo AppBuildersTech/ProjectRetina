@@ -1,0 +1,107 @@
+%++++++++++++++++++++++++++++++++++++++++
+% Don't modify this section unless you know what you're doing!
+\documentclass[letterpaper,11pt]{article}
+\usepackage{tabularx} % extra features for tabular environment
+\usepackage{amsmath}  % improve math presentation
+\usepackage{amssymb}  % improve math presentation
+\usepackage{graphicx} % takes care of graphic including machinery
+\usepackage[margin=0.8in,letterpaper]{geometry} % decreases margins
+\usepackage{cite} % takes care of citations
+\usepackage{caption}
+\usepackage{subcaption}
+%++++++++++++++++++++++++++++++++++++++++
+
+
+\begin{document}
+
+\title{\bf{BM 59D Final Project Proposal \\ Diabetic Retinopathy Detection}}
+\author{
+  \textbf{Kaan Oktay}\\
+  \texttt{2016701108}
+  \and
+  \textbf{Alper Bayram}\\
+  \texttt{2016701024}
+}
+\date{}
+\maketitle 
+
+\section{Aim}
+\hspace{13pt} Diabetic Retinopathy (DR) is an eye disease associated with long-standing diabetes and the leading cause of blindness in the working-age population of the developed world. Around 40\% to 45\% of Americans with diabetes have some stage of the disease. Currently, detecting DR is a time-consuming and manual process that requires a trained clinician to examine and evaluate digital color fundus photographs of the retina. In recent years, there are multiple efforts to automatize this manual process\cite{art1,art2,art3,art4}.
+
+In this project, we will try to classify the level of diabetic retinopathy of each patient into 5 different stages using a dataset published by Kaggle\footnote{https://www.kaggle.com/c/diabetic-retinopathy-detection/data}.  
+
+\section{Data}
+
+\hspace{13pt} We are provided with a large dataset of high-resolution retina images taken under various imaging conditions. A left and right field is provided for every patient. Each image is labelled with a subject ID as well as either left or right. A clinician has already rated the stage of diabetic retinopathy in each image on a scale of 0 to 4. Severity of the diabetic retinopathy increases as the value of scale increases.
+
+Each image in the dataset has been recorded with different conditions. Also some of them has been recorded anatomically inverted or with different angles. In addition, images may contain artifacts. To achieve an accurate classification, all of these inconsistencies between images and the noise should be considered and acted accordingly using some pre-processing methods.
+
+\section{Methodology}
+
+\subsection{Pre-Processing}
+
+\hspace{13pt} Pre-processing is vital to ensure that the dataset is consistent and displays only relevant features. An example of dataset images can be seen in Fig. \ref{fig1}.
+
+Firstly, we will crop all the images because each image has a black region without relevant information. Then the problem of angle differences between images will be fixed. Median filtering operation will be applied to reduce noise. In addition, we are planning to apply contrast enhancement using histogram equalization to enhance features of the image. To reduce computational load, the images will be downsampled to 256x256 pixels.
+
+\subsection{Feature Selection}
+
+\hspace{13pt} In the literature, there many features proposed to detect diabetic retinopathy from digital fundus images. For example, in a recent paper \cite{art5}, fourteen features of eye images were proposed and some of them will be chosen and extracted from images to detect diabetic retinopathy for our project. These features include exudates area, blood vessel area, Shannon entropy, optic disk etc. 
+
+\subsection{Classification Methods}
+\hspace{13pt} After features are extracted, we will make use of classifiers such as the k-nearest neighbor (kNN), support vector machine (SVM), tree-based methods, Gaussian Mixture model (GMM) and AdaBoost for classifying the grade of diabetic retinopathy. We will present AUC, sensitivity and specifity for each classifier to compare their performances.
+
+If the time allows we are planning to use deep learning methods which are the state-of-the-art techniques for object detection and classification. 
+
+
+
+
+
+\begin{figure*}[t!]
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[height=1.8in]{Imageleft}
+        \caption{Left eye}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.44\textwidth}
+        \centering
+        \includegraphics[height=1.8in]{Imageright}
+        \caption{Right eye}
+    \end{subfigure}
+    \caption{An example of dataset images.}
+    \label{fig1}
+\end{figure*}
+
+
+
+
+
+
+
+
+
+\begin{thebibliography}{99}
+
+\bibitem{art1}
+ Bhuiyan, A., Nath, B., Chua, J., and Kotagiri, R., Blood vessel segmentation from color retinal images using unsupervised texture classification. IEEE Int. Conf. Image Processing, ICIP 5:521–524,
+2007
+
+\bibitem{art2}
+Acharya, U. R., Lim, C. M., Ng, E. Y. K., Chee, C., and Tamura, T., Computer based detection of diabetes retinopathy stages using digital fundus images. J. Eng. Med. 223(H5):545–553, 2009.
+
+\bibitem{art3}
+Hunter, A., Lowell, J., Owens, J., and Kennedy, L, Quantification of diabetic retinopathy using neural networks and sensitivity analysis, In Proceedings of Artificial Neural Networks in Medicine and Biology, pp. 81-86, 2000.
+
+\bibitem{art4}
+Sinthanayothin, C., Boyce, J. F., Williamson, T. H., and Cook, H. L., Automated detection of diabetic retinopathy on digital fundus image. Diabet. Med. 19(2):105–112, 2002.
+
+\bibitem{art5}
+Sisodia, D. S., Nair, S., and Khobragade, P., Diabetic Retinal Fundus Images: Preprocessing and Feature Extraction for Early Detection of Diabetic Retinopathy. Biomedical and Pharmacology Journal, 10(2): 615-626 (2017).
+
+\end{thebibliography}
+
+
+
+
+\end{document}
