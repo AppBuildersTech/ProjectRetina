@@ -14,8 +14,8 @@ To implement the methodology Python 3.5.2 is used. Below you can see the necessa
 
 ### *PAPERS*
 
-- https://link.springer.com/article/10.1007%2Fs10916-010-9454-7
-- https://www.dropbox.com/s/2q6q3yok14zkaq2/diabetic%20retinopathy%20report.pdf?dl=0
+- [Algorithms for the Automated Detection of Diabetic Retinopathy Using Digital Fundus Images: A Review](https://link.springer.com/article/10.1007%2Fs10916-010-9454-7)
+- [Diabetic Retinopathy Detection](https://www.dropbox.com/s/2q6q3yok14zkaq2/diabetic%20retinopathy%20report.pdf?dl=0)
 
 ### *Collaborators*
 
