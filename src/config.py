@@ -8,8 +8,11 @@ config.read('config.cfg')
 trndataPath = config.get("paths", "trndataPath")
 tstdataPath = config.get("paths", "tstdataPath")
 labelPath = config.get("paths", "labelPath")
-sampleLabelPath = config.get("paths", "sampleLabelPath")
+classificationLabelPath = config.get("paths", "classificationLabelPath")
+detectionLabelPath = config.get("paths", "detectionLabelPath")
 samplePath = config.get("paths", "samplePath")
+classificationFeatures = config.get("paths", "classificationFeatures")
+detectionFeatures = config.get("paths", "detectionFeatures")
 
 # #  ------           [Compression]          ------------- #
 frame_length = config.getint ("compression", "frame_length")
