@@ -9,9 +9,9 @@ labels = np.unique(imlabels['level'])
 df = pd.DataFrame(columns=list(imlabels))
 for l in labels:
 	if l == 0:
-		df = df.append(imlabels.loc[imlabels['level'] == l].sample(1200))
+		df = df.append(imlabels.loc[imlabels['level'] == l].sample(700))
 	else:
-		df = df.append(imlabels.loc[imlabels['level'] == l].sample(300))
+		df = df.append(imlabels.loc[imlabels['level'] == l].sample(700))
 
 df = df.sample(frac=1).reset_index(drop=True)
-df.to_csv(detectionLabelPath)
+df.to_csv(classificationLabelPath)

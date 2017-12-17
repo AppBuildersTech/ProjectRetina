@@ -94,6 +94,7 @@ elif args.mode == "classification":
 	df = pd.read_csv(classificationFeatures)
 
 # Take data and target classes
+df = df[['bvMean','bvMax','bvNumber','bvArea','opticDist','entropy','label']]
 data = df.iloc[:,1:-2]
 trgt = df.iloc[:,-1]
 
@@ -104,7 +105,7 @@ outliers = outlierDetection(data,args.outlier)
 data = MinMaxScaler().fit_transform(data)
 
 # Feature selection applied here. There are a couple of options in scikit-learn: chi-squared stats, ANOVA F-value, mutual information estimation.
-data = SelectKBest(eval(args.selection), k=args.nfeat).fit_transform(data, trgt)
+# data = SelectKBest(eval(args.selection), k=args.nfeat).fit_transform(data, trgt)
 
 # Decide how to split dataset.
 kf = KFold(n_splits=args.split)
@@ -131,10 +132,11 @@ for name in names:
 	accuracy = np.trace(confusionM[name]) / float(confusionM[name].sum())
 	tabularData.append([name,kappaScore[name],accuracy])
 tabularData = np.vstack(tabularData)
-print tabulate(tabularData, headers=["Classifier", "KappaScore", "Accuracy"],floatfmt=".3f")
+print(tabulate(tabularData, headers=["Classifier", "KappaScore", "Accuracy"],floatfmt=".3f"))
 
 # Plot confusion matrices for each classifier.
-# for c,(name,clf) in enumerate(zip(names,classifiers)):
-# 	plt.figure()
-# 	pltConfusion(confusionM[name], classes=np.unique(trgt),title='Confusion matrix for ' + name + ' classifier ($\kappa$ = ' + "{0:.2f}".format(kappaScore[name]) + ").")
-# 	plt.show()
+for c,(name,clf) in enumerate(zip(names,classifiers)):
+	plt.figure()
+	pltConfusion(confusionM[name], classes=np.unique(trgt),title='Confusion matrix for ' + name + ' classifier ($\kappa$ = ' + "{0:.2f}".format(kappaScore[name]) + ").")
+	plt.savefig(name + '_class.png')
+	plt.show()
